@@ -27,14 +27,12 @@ public class Toernooi {
     }
     public LocalDateTime zoekDatumVolgendeWedstrijdVan(String spelerid) {
         LocalDateTime datumvolgende;
-        boolean volgende = false;
         for (Wedstrijd wedstrijd :
                 wedstrijden) {
-            if (wedstrijd != null){
-            if (wedstrijd.spelerIdKomtVoor(spelerid)) {
+            if (wedstrijd != null && wedstrijd.spelerIdKomtVoor(spelerid)){
                 datumvolgende = wedstrijd.getWedstrijdDatum();
                 return datumvolgende;
-            }}
+            }
         }
         return null;
     }
