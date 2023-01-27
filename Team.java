@@ -10,26 +10,27 @@ public class Team {
 
     public Team(Sport sport) {
         this.sport = sport;
-        spelers = new Speler[sport.getAantalSpelers()];
+        this.spelers = new Speler[sport.getAantalSpelers()];
     }
 
     public void voegSpelerToe(Speler speler){
-        if (spelerKomtVoor(speler)){
-            System.out.println("Foutieve Ingave");}
-            else if (vindVrijePositie() == -1){
-                System.out.println("Foutieve Ingave");
-            } else {
-                spelers[vindVrijePositie()] = speler;
-            }
+        if (speler.getSport() == this.sport
+            && !spelerKomtVoor(speler)
+            && vindVrijePositie()!= -1){
+            spelers[vindVrijePositie()]=speler;
+        }
+        else {
+            System.out.println("FOUTIEVE INGAVE");
+        }
     }
     public  boolean spelerKomtVoor(Speler speler){
         for (Speler teamspeler :
                spelers ) {
-        if (teamspeler != null){
-            if (teamspeler.equals(speler)){
-                return true;
-            }}
-        } return false;
+        if (teamspeler != null && speler.getId().equals(teamspeler.getId())){
+                            return true;
+            }
+        }
+        return false;
     }
     public int vindVrijePositie(){
         for (int i = 0; i < spelers.length; i++) {
@@ -39,14 +40,8 @@ public class Team {
         } return -1;
     }
     public boolean spelerIdKomtVoor(String spelerid) {
-        Speler nieuwespeler = new Speler(spelerid);
-        for (Speler teamspelers :
-                spelers) {
-            if (teamspelers != null){
-            if (nieuwespeler.equals(teamspelers)) {
-                return true;
-            }}
-        } return false;
+        return spelerKomtVoor(new Speler(spelerid));
+
     }
 
     @Override
