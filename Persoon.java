@@ -22,6 +22,18 @@ public abstract class Persoon{
         this.id = idformat.toString().toUpperCase();}
         this.naam = naam;
     }
+    /*Beter :
+    public Persoon(String id, String naam) {
+        StringBuilder idBuilder = new StringBuilder();
+        for (char c : id.toCharArray()) {
+            if (idBuilder.length() <= 3 && Character.isLetterOrDigit(c)) {
+                idBuilder.append(c);
+            }
+        }
+        this.id = idBuilder.toString().toUpperCase();
+        this.naam = naam;
+    }
+     */
 
     public String getId() {
         return id;
